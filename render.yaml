@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: deobf-web
+    runtime: python
+    plan: free
+
+    buildCommand: pip install -r requirements.txt && unzip -o Deobf_Render_Ready.zip
+
+    startCommand: gunicorn web.app:app
+
+    healthCheckPath: /
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
